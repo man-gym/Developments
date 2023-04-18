@@ -83,10 +83,10 @@ def main():
     num_points = 100
     min_coord = 0
     max_coord = 100
-    population_size = 50
-    num_generations = 100
-    num_parents = 10
-    mutation_probability = 0.1
+    population_size = 100
+    num_generations = 500
+    num_parents = 20
+    mutation_probability = 0.05
 
     points = [(random.randint(0, 100), random.randint(0, 100)) for _ in range(100)]
     print("Сгенерированные точки:")
