@@ -2,17 +2,22 @@ import random
 import math
 import matplotlib.pyplot as plt
 
+
 def generate_points(num_points, min_coord, max_coord):
     return [(random.randint(min_coord, max_coord), random.randint(min_coord, max_coord)) for _ in range(num_points)]
+
 
 def distance(p1, p2):
     return math.sqrt((p1[0] - p2[0])**2 + (p1[1] - p2[1])**2)
 
+
 def path_distance(path):
     return sum(distance(path[i], path[i - 1]) for i in range(len(path)))
 
+
 def two_opt(path, i, k):
     return path[:i] + path[i:k+1][::-1] + path[k+1:]
+
 
 def two_opt_algorithm(path, max_iterations):
     best_path = path
@@ -29,6 +34,7 @@ def two_opt_algorithm(path, max_iterations):
                     best_distance = new_distance
 
     return best_path
+
 
 def plot_tsp_solution(points, solution, title="TSP Solution"):
     plt.figure(figsize=(10, 6))
@@ -48,8 +54,9 @@ def plot_tsp_solution(points, solution, title="TSP Solution"):
     plt.grid()
     plt.show()
 
+
 def main():
-    num_points = 10
+    num_points = 100
     min_coord = 0
     max_coord = 100
     max_iterations = 1000
@@ -72,6 +79,7 @@ def main():
     print("\nОбщая дистанция:", path_distance(tsp_solution))
 
     plot_tsp_solution(points, tsp_solution, title=f"TSP Solution (Total Distance: {path_distance(tsp_solution):.2f}))")
+
 
 if __name__ == "__main__":
     main()

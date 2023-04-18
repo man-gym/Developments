@@ -94,7 +94,6 @@ def main():
         print(point)
 
     tsp_solution = genetic_algorithm_tsp(points, population_size, num_generations, num_parents, mutation_probability)
-    print("\nРешение задачи коммивояжера с использованием генетического алгоритма:")
     print_shortest_path(tsp_solution)
 
     plot_tsp_solution(points, tsp_solution, title=f"TSP Solution (Total Distance: {path_distance(tsp_solution):.2f})")
