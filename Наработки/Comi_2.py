@@ -83,10 +83,10 @@ def main():
     num_points = 100
     min_coord = 0
     max_coord = 100
-    population_size = 100
-    num_generations = 500
-    num_parents = 20
-    mutation_probability = 0.05
+    population_size = 1000  # увеличение размера популяции
+    num_generations = 2000  # увеличение количества поколений
+    num_parents = 200  # увеличение количества родителей
+    mutation_probability = 0.01
 
     points = [(random.randint(0, 100), random.randint(0, 100)) for _ in range(100)]
     print("Сгенерированные точки:")
@@ -98,8 +98,8 @@ def main():
 
     plot_tsp_solution(points, tsp_solution, title=f"TSP Solution (Total Distance: {path_distance(tsp_solution):.2f})")
 
-
 if __name__ == "__main__":
     main()
+
 
 
