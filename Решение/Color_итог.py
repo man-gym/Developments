@@ -38,12 +38,14 @@ def find_color_coefficients(colors, ratio):
         return None
 
 
-def convert_24bit_to_rgb(A):
+def convert_dec_to_rgb(A):
     D = []
     for i in A:
-        r = int(i[0:2], 16)
-        g = int(i[2:4], 16)
-        b = int(i[4:6], 16)
+        binary_str = bin(i)[2:].zfill(24)
+        octets = [binary_str[j:j+8] for j in range(0, 24, 8)]
+        r = int(octets[0], 2)
+        g = int(octets[1], 2)
+        b = int(octets[2], 2)
         D.append(r)
         D.append(g)
         D.append(b)
@@ -54,9 +56,9 @@ def convert_24bit_to_rgb(A):
 
 
 # Пример использования
-'''
-A = ["FF0000", "00FF00", "0000FF"]
-rgb_lst = convert_24bit_to_rgb(A)
+"""
+A = [16711680, 65280, 255]  # decimal numbers
+rgb_lst = convert_dec_to_rgb(A)
 
 colors = rgb_lst
 
@@ -65,4 +67,5 @@ coefficients = find_color_coefficients(colors, ratio)
 if coefficients is not None:
     print("Коэффициенты для смешивания цветов:", " : ".join(map(str, coefficients)))
 else:
-    print("Не удалось найти коэффициенты для смешивания цветов")'''
+    print("Не удалось найти коэффициенты для смешивания цветов")
+"""
