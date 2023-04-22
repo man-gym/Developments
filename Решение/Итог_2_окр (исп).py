@@ -38,7 +38,8 @@ def process_image(image_path, circle_radius=5, circle_margin=2):
 
             pixel_colors = image[np.where(mask == 255)]
 
-            circle_color = np.mean(pixel_colors, axis=0)
+            circle_color, counts = np.unique(pixel_colors, axis=0, return_counts=True)
+            circle_color = circle_color[np.argmax(counts)]
 
             print(f"Circle {circle_count + 1} ({x}, {y}): {circle_color}")
 
@@ -70,13 +71,17 @@ def process_image(image_path, circle_radius=5, circle_margin=2):
             if edges[y, x] != 0:
                 cv2.rectangle(bordered_image, (x, y), (x, y), border_color, border_thickness)
 
+    unique_colors = np.unique([circle["color"] for circle in circle_data], axis=0)
+    unique_colors = [list(color) for color in unique_colors]
+    print("Unique colors:", unique_colors)
+
     cv2.imshow('Bordered Image', bordered_image)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
     return circle_data
 
-    # Пример использования функции
+# Пример использования функции
 
 """
 image_path = 'image.png'
