@@ -56,8 +56,8 @@ def process_image(image_path, circle_radius=5, circle_margin=2):
             circle_count += 1
 
     gray_image = cv2.cvtColor(circles_image, cv2.COLOR_BGR2GRAY)
-
-    blurred_image = cv2.GaussianBlur(gray_image, (5, 5), 0)
+    blurred_gray_image = cv2.GaussianBlur(gray_image, (5, 5), 0)
+    blurred_image = cv2.cvtColor(blurred_gray_image, cv2.COLOR_GRAY2BGR)
 
     edges = cv2.Canny(blurred_image, 100, 200)
 
